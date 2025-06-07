@@ -1,6 +1,6 @@
 const quotes = [
   "“All writing should be timed writing”",
-  "“The process we taje creates the prodcut we make”",
+  "“The process we take creates the prodcut we make”",
   "“Reading should be like a good date”",
   "“Writer's block doesn't exist, you just aren't prepared”",
   "“The best learner is a teacher and the best teacher is a learner”",
@@ -10,7 +10,21 @@ const quotes = [
 
 ];
 
+function typeWriter(text, elementId, delay = 30) {
+  const el = document.getElementById(elementId);
+  el.innerHTML = "";
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      el.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, delay);
+    }
+  }
+  type();
+}
+
 function generateQuote() {
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
-  document.getElementById("quote-box").innerText = quote;
+  typeWriter(quote, "quote-box");
 }
