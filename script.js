@@ -28,3 +28,11 @@ function generateQuote() {
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
   typeWriter(quote, "quote-box");
 }
+
+const bgMusic = document.getElementById('bg-music');
+const muteBtn = document.getElementById('mute-btn');
+
+muteBtn.addEventListener('click', () => {
+  bgMusic.muted = !bgMusic.muted;
+  muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
+});
