@@ -8,21 +8,37 @@ const quotes = [
   "“Reading is not remembering”",
 ];
 
-function typeWriter(text, elementId, delay = 30) {
+let lastQuote = ""; // Track the previous quote
+
+function typeWriter(text, elementId, delay = 30, callback) {
   const el = document.getElementById(elementId);
   el.innerHTML = "";
   let i = 0;
+
   function type() {
     if (i < text.length) {
       el.innerHTML += text.charAt(i);
       i++;
       setTimeout(type, delay);
+    } else if (callback) {
+      callback(); // Re-enable button after typing
     }
   }
+
   type();
 }
 
 function generateQuote() {
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
-  typeWriter(quote, "quote-box");
+  const button = document.getElementById("quote-button");
+  button.disabled = true;
+
+  let quote;
+  do {
+    quote = quotes[Math.floor(Math.random() * quotes.length)];
+  } while (quote === lastQuote && quotes.length > 1);
+  lastQuote = quote;
+
+  typeWriter(quote, "quote-box", 30, () => {
+    button.disabled = false;
+  });
 }
