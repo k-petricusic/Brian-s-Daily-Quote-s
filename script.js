@@ -4,7 +4,8 @@ const quotes = [
   "“Reading should be like a good date”",
   "“Writer's block doesn't exist, you just aren't prepared”",
   "“The best learner is a teacher and the best teacher is a learner”",
-  "“Learn to say more about less”"
+  "“Learn to say more about less”",
+  "“Reading is not remembering”",
 ];
 
 function typeWriter(text, elementId, delay = 30) {
